@@ -1,19 +1,19 @@
-<?php
+    <?php
 if(!defined("ROOT")){
     include "../config/config.php";
-
 }
 ?>
 <?php
-include ROOT . "/models/modeloCliente.php";
+include ROOT . "/models/modeloCompra.php";
 include ROOT . "/config/clase.php";
-class Cliente extends BaseClase
+
+class CompraListado extends BaseClase
 {
     
 
-    public function listarCliente()
+    public function listar_compra()
     {
-        $modelo = new ModeloCliente();
+        $modelo = new ModeloCompra();
 
         
         $page = $_GET["page"] ?? "";
@@ -21,7 +21,7 @@ class Cliente extends BaseClase
         $filtro = $_GET["filtro"] ?? ""; // Uso del operador null coalescing
 
         // Contar total de registros
-        $totalRegistros = $modelo->get_count(campo: 'cedula_cliente', filtro: $filtro);
+        $totalRegistros = $modelo->get_count(campo: 'id', filtro: $filtro);
         $registrosPorPagina = 5;
         $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
         
@@ -32,7 +32,7 @@ class Cliente extends BaseClase
         $offset = ($paginaActual - 1) * $registrosPorPagina;
 
         // Obtener los registros de la página actual
-        $data = $modelo->get_page($registrosPorPagina, max(0, $offset), $filtro, campo: 'cedula_cliente');
+        $data = $modelo->get_page($registrosPorPagina, max(0, $offset), $filtro, campo: 'id');
         
         // Renderizar la vista
         
@@ -50,42 +50,44 @@ class Cliente extends BaseClase
 
 }
 
-$clienteListado = new Cliente();
+
+$compra_listado = new CompraListado();
 if($_SERVER["REQUEST_METHOD"]==="GET"){
     
-    $context = $clienteListado->listarCliente(); 
+    $context = $compra_listado->listar_compra(); 
     extract($context);
+    
     
 }
 
 
 ?>
-
-
 <table class="table" >
 
     <thead>
         
-        <th>nombre</th>
-        <th>Cedula</th>
-        <th>Direccion</th>
-        <th>Telefono</th>
+        <th>#</th>
+        <th>producto</th>
+        <th>proveedor</th>
+        <th>Cantidad</th>
+        
     </thead>
     <tbody class="table-border-bottom-0">
 
-        <?php foreach ($data as $cliente) { ?>
+        <?php foreach ($data as $compra) { ?>
             <tr>
 
                 
-                <td><?= $cliente["nombre_cliente"]; ?></td>
-                <td>V- <?= $cliente["cedula_cliente"]; ?></td>
+                <td><?= $compra["id"]; ?></td>
+                <td><?= $compra["nombre_producto"]; ?></td>
 
-                <td><?= $cliente["telefono_cliente"]; ?></td>
+                <td><?= $compra["nombre_proveedor"]; ?></td>
+                <td><?= $compra["cantidad"]; ?></td>
                 <td>
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger" onclick="eliminar_cliente(<?= $cliente['id_cliente'] ?>)"> 
+                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger" onclick="eliminar_compra(<?= $compra['id'] ?>)"> 
                         <span class="tf-icons bx bx-trash"></span>
                     </button>
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-primary" onclick="actualizarCliente(<?= $cliente['id_cliente'] ?>)">
+                    <button type="button" class="btn rounded-pill btn-icon btn-outline-primary" onclick="detalle_compra(<?= $compra['id'] ?>)">
 
                         <span class="tf-icons bx bx-pencil"></span>
                     </button>
@@ -99,5 +101,5 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
 
     </tbody>
 </table>
-<input type="hidden" id="url-paginacion" data-url="/sistema_estefany/app/cliente/listar_cliente.php">
+<input type="hidden" id="url-paginacion" data-url="/sistema_estefany/app/compra/listado_compra.php">
 <?php include ROOT . "/plantillas/paginacion.php" ?>

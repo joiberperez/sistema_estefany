@@ -5,9 +5,9 @@ if (!class_exists('Model')) {
     
 }
 
-class ModeloCliente extends Model
-{
 
-    public $table = "cliente";
+
+class ModeloCategoria extends Model {
+    public $table = "categoria";
 
 }

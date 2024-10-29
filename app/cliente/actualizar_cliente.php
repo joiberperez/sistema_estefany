@@ -34,10 +34,11 @@ class ActualizarCliente extends BaseClase{
                 
             ];
             $modelo->actualizarCliente($id_cliente,$datos,"id_cliente");
-            echo "se ha actualizado el registro N° ". $id_cliente;
-            header("Location: /sistema_estefany/app/cliente/cliente.php");
+            echo json_encode(["tipo"=>"success", "mensaje"=>"¡Se ha actualizado con exito!"]);
+            
         }catch(Exception $error){
-            echo "ha ocurrido un error: ". $error;
+            
+            echo json_encode(["tipo"=>"danger", "mensaje"=>$error->getMessage()]);
 
         }
         
@@ -46,60 +47,47 @@ class ActualizarCliente extends BaseClase{
 
 $actualizarCliente = new ActualizarCliente();
 
-if($_SERVER["REQUEST_METHOD"]==="GET"){
+if($_SERVER["REQUEST_METHOD"]==="POST"){
     
-    $cliente = $actualizarCliente->listar_cliente();
-}else{
     $actualizarCliente->actualizar_cliente();
+}else{
 
-}
+    $cliente = $actualizarCliente->listar_cliente();
+
+
 
 
 
 ?>
 
-<form class="text-start" action="/sistema_estefany/app/cliente/actualizar_cliente.php" method="post">
+<form class="text-start" action="/sistema_estefany/app/cliente/actualizar_cliente.php" method="post" id="form_actualizar_cliente">
     <div class="row">
         <div class="col-lg-6 mb-3">
             <label for="">Nombre</label>
-            <input type="text" class="form-control" name="nombre_cliente" onkeypress="evitarNumeros(event)" value="<?= $cliente["nombre_cliente"] ?>">
+            <input type="text" class="form-control" id="nombre_cliente_input" name="nombre_cliente" onkeypress="evitarNumeros(event)" value="<?= $cliente["nombre_cliente"] ?>">
         </div>
         <div class="col-lg-6 mb-3">
             <label for="">Apellido</label>
-            <input type="text" class="form-control" name="apellido_cliente" value="<?= $cliente["apellido_cliente"] ?>" >
+            <input type="text" class="form-control" id="apellido_cliente_input" name="apellido_cliente" value="<?= $cliente["apellido_cliente"] ?>" >
         </div>
         <div class="col-lg-6 mb-3">
             <label for="">Cedula</label>
-            <input type="text" class="form-control" name="cedula_cliente" onkeypress="permitirSoloNumeros(event)" value="<?= $cliente["cedula_cliente"] ?>" >
+            <input type="text" class="form-control" id="cedula_cliente_input" name="cedula_cliente" onkeypress="permitirSoloNumeros(event)" value="<?= $cliente["cedula_cliente"] ?>" >
         </div>
         <div class="col-lg-6 mb-3">
             <label for="">Telefono</label>
-            <input type="text" class="form-control" name="telefono_cliente" onkeypress="permitirSoloNumeros(event)" value="<?= $cliente["telefono_cliente"] ?>" >
+            <input type="text" class="form-control" id="telefono_cliente_input" name="telefono_cliente" onkeypress="permitirSoloNumeros(event)" value="<?= $cliente["telefono_cliente"] ?>" >
         </div>
     </div>
-    <input type="hidden" name="id_cliente" value="<?= $cliente["id_cliente"] ?>">
+    <input type="hidden" name="id_cliente"  value="<?= $cliente["id_cliente"] ?>">
     <div class="mt-3 text-end">
         
         <button type="submit" class="btn btn-primary">Actualizar</button>
-        <button class="btn btn-danger">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="location.reload();">Cancelar</button>
     </div>
 </form>
 
-<script>
-        // Función para evitar que se ingresen números en el campo de texto
-        function evitarNumeros(event) {
-            var charCode = event.which || event.keyCode;
-            // Permitir solo letras (mayúsculas y minúsculas) y teclas de control como retroceso
-            if ((charCode >= 48 && charCode <= 57)) {
-                event.preventDefault(); // Evitar que se escriban números
-            }
-        }
-        function permitirSoloNumeros(event) {
-            var charCode = event.which || event.keyCode;
+<script src="/sistema_estefany/public/js/cliente.js"></script>
 
-            // Permitir solo números (teclas con código entre 48 y 57), backspace (8), y delete (46)
-            if ((charCode < 48 || charCode > 57) && charCode !== 8 && charCode !== 46) {
-                event.preventDefault(); // Cancelar la entrada si no es un número
-            }
-        }
-    </script>
+
+<?php } ?>

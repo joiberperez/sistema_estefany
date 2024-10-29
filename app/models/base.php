@@ -14,7 +14,9 @@
         public $table; # Guarda el nombre de la tabla
         
         # Carga las variables que contienen los datos de la conexion
-        private function load_vars_db() { require_once ROOT ."/config/db.php"; }
+        private function load_vars_db() { 
+            include ROOT .  "/config/db.php";
+         }
 
         # Crea el DSN para realizar la conexion
         private function get_dsn() { return "{$this->driver}:host={$this->host};dbname={$this->database}"; }
@@ -26,7 +28,7 @@
                 return $connection;
             }
             catch (PDOException $e) {
-                echo $e->getMessage(); # Se muestra el mensaje de error
+                echo "" .$e->getMessage(); # Se muestra el mensaje de error
                 exit(); # Mata la ejecucion de PHP
             }
         }
@@ -62,7 +64,7 @@
                 $db = $this->conn->prepare($this->create_insert_sql($array_data)); # Prepara el registro
                 $db->execute($array_data); # Ejecuta y pasa los datos
             } catch (Exception $e) {
-                echo 'Error: ' . $e->getMessage(); // Manejo de excepciones
+                echo json_encode(["tipo"=>"danger", "mensaje"=>$e->getMessage()]); // Manejo de excepciones
                 exit(); # Mata la ejecucion del codigo
             }
         }
@@ -98,7 +100,8 @@
                 $db = $this->conn->prepare($this->actualizar_sql($condicion, $datos,$campo)); # Prepara el registro
                 $db->execute($datos); # Ejecuta y pasa los datos
             } catch (Exception $e) {
-                echo 'Error: ' . $e->getMessage(); // Manejo de excepciones
+                echo json_encode(["tipo"=>"danger", "mensaje"=>$e->getMessage()]);
+                 // Manejo de excepciones
                 exit(); # Mata la ejecucion del codigo
             }
         }
@@ -133,5 +136,24 @@
             $stmt = $this->conn->query($sql);
             $totalRegistros = $stmt->fetchColumn();
             return $totalRegistros;
+        }
+
+        function eliminarRegistro($id,$campo) {
+            try {
+                // Preparar la consulta SQL
+                $consulta = $this->conn->prepare("DELETE FROM $this->table WHERE $campo = :id");
+                
+                // Asignar el valor al parámetro
+                $consulta->bindParam(':id', $id, PDO::PARAM_INT);
+                
+                // Ejecutar la consulta
+                $consulta->execute();
+                return $consulta;
+                
+                // Verificar si se eliminó alguna fila
+                
+            } catch (PDOException $e) {
+                echo "Error al eliminar el registro: " . $e->getMessage();
+            }
         }
 }

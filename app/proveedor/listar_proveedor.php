@@ -5,15 +5,15 @@ if(!defined("ROOT")){
 }
 ?>
 <?php
-include ROOT . "/models/modeloCliente.php";
+include ROOT . "/models/modeloProveedor.php";
 include ROOT . "/config/clase.php";
-class Cliente extends BaseClase
+class Proveedor extends BaseClase
 {
     
 
-    public function listarCliente()
+    public function listarProveedor()
     {
-        $modelo = new ModeloCliente();
+        $modelo = new ModeloProveedor();
 
         
         $page = $_GET["page"] ?? "";
@@ -21,7 +21,7 @@ class Cliente extends BaseClase
         $filtro = $_GET["filtro"] ?? ""; // Uso del operador null coalescing
 
         // Contar total de registros
-        $totalRegistros = $modelo->get_count(campo: 'cedula_cliente', filtro: $filtro);
+        $totalRegistros = $modelo->get_count(campo: 'nombre', filtro: $filtro);
         $registrosPorPagina = 5;
         $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
         
@@ -32,7 +32,7 @@ class Cliente extends BaseClase
         $offset = ($paginaActual - 1) * $registrosPorPagina;
 
         // Obtener los registros de la página actual
-        $data = $modelo->get_page($registrosPorPagina, max(0, $offset), $filtro, campo: 'cedula_cliente');
+        $data = $modelo->get_page($registrosPorPagina, max(0, $offset), $filtro, campo: 'nombre');
         
         // Renderizar la vista
         
@@ -50,10 +50,10 @@ class Cliente extends BaseClase
 
 }
 
-$clienteListado = new Cliente();
+$clienteListado = new Proveedor();
 if($_SERVER["REQUEST_METHOD"]==="GET"){
     
-    $context = $clienteListado->listarCliente(); 
+    $context = $clienteListado->listarProveedor(); 
     extract($context);
     
 }
@@ -66,26 +66,27 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
 
     <thead>
         
+        <th>id</th>
         <th>nombre</th>
-        <th>Cedula</th>
-        <th>Direccion</th>
+        
         <th>Telefono</th>
     </thead>
     <tbody class="table-border-bottom-0">
 
-        <?php foreach ($data as $cliente) { ?>
+        <?php foreach ($data as $proveedor) { ?>
             <tr>
 
                 
-                <td><?= $cliente["nombre_cliente"]; ?></td>
-                <td>V- <?= $cliente["cedula_cliente"]; ?></td>
+                <td><?= $proveedor["id"]; ?></td>
+                <td><?= $proveedor["nombre"]; ?></td>
+                
+                <td><?= $proveedor["telefono"]; ?></td>
 
-                <td><?= $cliente["telefono_cliente"]; ?></td>
                 <td>
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger" onclick="eliminar_cliente(<?= $cliente['id_cliente'] ?>)"> 
-                        <span class="tf-icons bx bx-trash"></span>
+                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger">
+                        <span class="tf-icons bx bx-trash" onclick="eliminar_proveedor(<?= $proveedor['id'] ?>)"></span>
                     </button>
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-primary" onclick="actualizarCliente(<?= $cliente['id_cliente'] ?>)">
+                    <button type="button" class="btn rounded-pill btn-icon btn-outline-primary" onclick="actualizarProveedor(<?= $proveedor['id'] ?>)">
 
                         <span class="tf-icons bx bx-pencil"></span>
                     </button>
@@ -99,5 +100,6 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
 
     </tbody>
 </table>
-<input type="hidden" id="url-paginacion" data-url="/sistema_estefany/app/cliente/listar_cliente.php">
+<input type="hidden" id="url-paginacion" data-url="/sistema_estefany/app/proveedor/listar_proveedor.php">
 <?php include ROOT . "/plantillas/paginacion.php" ?>
+

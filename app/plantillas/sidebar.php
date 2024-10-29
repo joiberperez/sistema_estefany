@@ -85,7 +85,7 @@
             
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link">
+              <a href="/sistema_estefany/app/proveedor/proveedor.php"  class="menu-link">
                 <i class="menu-icon fa fa-truck fa-lg"></i>
                 
                 <div>Proveedor</div>
@@ -93,10 +93,18 @@
             
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link">
+              <a href="/sistema_estefany/app/producto/producto.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 
                 <div>Producto</div>
+              </a>
+            
+            </li>
+            <li class="menu-item">
+              <a href="/sistema_estefany/app/compra/compra.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                
+                <div>Compra</div>
               </a>
             
             </li>

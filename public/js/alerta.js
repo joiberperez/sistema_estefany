@@ -1,5 +1,8 @@
 function alerta(tipo,mensaje) {
     let titulo = "";
+    if(tipo=="error"){  
+      tipo = "danger"
+    }
     if(tipo==="danger"){
         titulo = "Algo ha salido mal!";
     }else{

@@ -42,13 +42,15 @@
   <link rel="stylesheet" href="/sistema_estefany/public/lib/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
   <link rel="stylesheet" href="/sistema_estefany/public/lib/fontawesome/css/all.min.css">
   <!-- Page CSS -->
-
+  
   <!-- Helpers -->
   <script src="/sistema_estefany/public/lib/sneat/assets/vendor/js/helpers.js"></script>
-
+  
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-  <script src="/sistema_estefany/public/lib/sneat/assets/js/config.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/sistema_estefany/public/lib/sneat/assets/js/config.js"></script>
+    <link href="/sistema_estefany/public/lib/sweet_alert2/css/sweetalert2.css"rel="stylesheet">
+
 
 </head>
 
