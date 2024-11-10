@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 
 ?>
 
-<form class="text-start" action="/sistema_estefany/app/cliente/actualizar_cliente.php" method="post" id="form_actualizar_cliente">
+<form class="p-2 text-start" action="/sistema_estefany/app/cliente/actualizar_cliente.php" method="post" id="form_actualizar_cliente">
     <div class="row">
         <div class="col-lg-6 mb-3">
             <label for="">Nombre</label>

@@ -7,6 +7,7 @@ if(!defined("ROOT")){
 include ROOT . "/models/modeloProducto.php";
 include ROOT . "/config/clase.php";
 
+
 class ProductoListado extends BaseClase
 {
     
@@ -65,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
 <table class="table" >
 
     <thead>
-        <th>id</th>
+        
         <th>nombre</th>
         <th>Precio</th>
         <th>Categoria</th>
@@ -76,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
         <?php foreach ($data as $producto) { ?>
             <tr>
 
-            <td><?= $producto["id"]; ?></td>
+            
                 <td><?= $producto["nombre"]; ?></td>
                 <td>$<?= $producto["precio"]; ?></td>
 

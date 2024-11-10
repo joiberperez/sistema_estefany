@@ -4,12 +4,13 @@ if (!defined("ROOT")) {
   include "../config/config.php";
 }
 include ROOT . "/models/modeloProducto.php";
+include ROOT . "/models/modeloInventario.php";
 include ROOT . "/config/clase.php";
 class CrearProducto extends BaseClase
 {
 
 
-
+  
 
   public function crear_producto()
   {
@@ -30,7 +31,13 @@ class CrearProducto extends BaseClase
           "precio" => $precio,
   
         ];
-        $modelo->create($datos);
+        $producto_registrado_id = $modelo->create($datos);
+        $modeloInventario = new ModeloInventario();
+        $datosInventario = [
+          "producto_id" => $producto_registrado_id,
+          "cantidad_disponible" => 0
+        ];
+        $modeloInventario->create($datosInventario);
         return ["tipo" => "success", "mensaje" => "Se ha registrado con exito!"];
 
       }

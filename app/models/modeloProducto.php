@@ -12,7 +12,50 @@ class ModeloProducto extends Model
 
     public $table = "producto";
 
+    function create($array_data){
+        try {
+            $db = $this->conn->prepare($this->create_insert_sql($array_data)); # Prepara el registro
+            $db->execute($array_data); # Ejecuta y pasa los datos
+            $id = $this->conn->lastInsertId();
+            return $id;
+        } catch (Exception $e) {
+            echo json_encode(["tipo"=>"danger", "mensaje"=>$e->getMessage()]); // Manejo de excepciones
+            exit(); # Mata la ejecucion del codigo
+        }
+    }
  
+    function get_data_filter($campo1,$campo2,$filtro){
+        $sql = "
+        SELECT 
+            p.*, 
+            c.nombre AS categoria_nombre, 
+            i.cantidad_disponible AS cantidad
+        FROM 
+            producto p
+        LEFT JOIN 
+            categoria c ON p.categoria_id = c.id
+        LEFT JOIN 
+            inventario i ON p.id = i.producto_id
+        WHERE 
+            p.$campo1 LIKE :filtro
+        OR 
+            p.$campo2 LiKE :filtro
+
+        LIMIT 5";
+
+    $stmt = $this->conn->prepare($sql);
+
+    // Vincular parámetros
+    $likeFiltro = "%$filtro%";
+    $stmt->bindParam(':filtro', $likeFiltro, PDO::PARAM_STR);
+    
+    
+    // Ejecutar y obtener resultados
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $data;
+    }
 
     function get_page($registrosPorPagina, $offset, $filtro, $campo)
 {

@@ -11,6 +11,40 @@ class ModeloCompra extends Model
 {
     public $table = "compra_producto";
 
+    
+
+
+
+    function getDetail($campo,$valor){
+        $query = $this->conn->prepare(" SELECT 
+                cp.*, 
+                p.nombre AS nombre_producto, 
+                pr.nombre AS nombre_proveedor
+            FROM 
+                compra_producto cp
+            LEFT JOIN 
+                producto p ON cp.producto_id = p.id
+            LEFT JOIN 
+                proveedor pr ON cp.proveedor_id = pr.id WHERE cp.$campo=:valor"); # prepara la consulta
+        $query->bindParam(':valor', $valor, PDO::PARAM_INT); # Pasa el parametro
+        $query->execute(); # Ejecuta
+        return $query->fetch(PDO::FETCH_ASSOC); # Devuelve el resutado
+    }
+
+    function getAll(){
+        $query = $this->conn->query("SELECT 
+                cp.*, 
+                p.nombre AS nombre_producto, 
+                pr.nombre AS nombre_proveedor
+            FROM 
+                compra_producto cp
+            LEFT JOIN 
+                producto p ON cp.producto_id = p.id
+            LEFT JOIN 
+                proveedor pr ON cp.proveedor_id = pr.id");
+        $query = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query;
+    }
     function get_page($registrosPorPagina, $offset, $filtro, $campo)
     {
         // Validar campo
@@ -33,6 +67,7 @@ class ModeloCompra extends Model
                 proveedor pr ON cp.proveedor_id = pr.id
             WHERE 
                 cp.$campo LIKE :filtro
+                ORDER BY cp.id DESC
             LIMIT 
                 :limit OFFSET :offset";
     

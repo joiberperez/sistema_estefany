@@ -1,0 +1,9 @@
+{
+    "name": "jr/sistema_estefany",
+    "description": "sistema de registro y control de venta",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "setasign/fpdf": "^1.8"
+    }
+}

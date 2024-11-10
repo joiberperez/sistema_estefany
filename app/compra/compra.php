@@ -18,7 +18,7 @@
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="row">
-                        <div class="col-10 mt-2">
+                        <div class="col-lg-10 col-sm-8 mt-2">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                             </nav>
 
                         </div>
-                        <div class="col-2 text-end">
+                        <div class="col-lg-2 col-sm-4  text-end">
 
                             <button class="btn btn-primary" id="btn-abrir-modal">Registrar Compra</button>
                         </div>
@@ -77,8 +77,8 @@
     })
 
 })
-function detalle_compra(){
-    $.get("/sistema_estefany/app/compra/detalle_compra.php").done(function (data) {
+function detalle_compra(id){
+    $.get("/sistema_estefany/app/compra/detalle_compra.php",{id}).done(function (data) {
         
         
         

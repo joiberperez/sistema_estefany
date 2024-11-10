@@ -32,7 +32,7 @@
                             </nav>
 
                         </div>
-                        <div class="col-2 text-end">
+                        <div class="col-lg-2 text-end">
 
                             <button class="btn btn-primary" id="btn-abrir-modal">Registrar Producto</button>
                         </div>

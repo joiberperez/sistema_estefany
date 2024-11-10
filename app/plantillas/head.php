@@ -50,6 +50,8 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/sistema_estefany/public/lib/sneat/assets/js/config.js"></script>
     <link href="/sistema_estefany/public/lib/sweet_alert2/css/sweetalert2.css"rel="stylesheet">
+    <link href="/sistema_estefany/public/lib/daterangepicker/daterangepicker.css"rel="stylesheet">
+    <link href="/sistema_estefany/public/lib/select2/dist/css/select2.min.css"rel="stylesheet">
 
 
 </head>

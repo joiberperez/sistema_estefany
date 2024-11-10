@@ -60,10 +60,17 @@
 <script>
     function cargarPagina(page) {
        let url = $("#url-paginacion").data("url");
-        $.get(url,{page}).done(function(e) {
-            
-            $("#data-table").html(e)
+       console.log(url);
+       $.get(url,{page}).done(function(e) {
+            console.log($("#contenedor-tabla").data("contenedor"));
+            if($("#contenedor-tabla").data("contenedor")!=undefined){
+                let contenedor = $("#contenedor-tabla").data("contenedor");
+                $(`#${contenedor}`).html(e)
+            }else{
+                $("#data-table").html(e)
 
+            }
+            
         })
     }
 </script>

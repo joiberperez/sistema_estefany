@@ -102,9 +102,27 @@
             </li>
             <li class="menu-item">
               <a href="/sistema_estefany/app/compra/compra.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+              <i class='menu-icon tf-icons bx bx-package' ></i>
+                
                 
                 <div>Compra</div>
+              </a>
+            
+            </li>
+            <li class="menu-item">
+              <a href="/sistema_estefany/app/venta/venta.php" class="menu-link">
+                
+                <i class='menu-icon  bx bx-cart-alt'></i>
+                
+                <div>Venta</div>
+              </a>
+            
+            </li>
+            <li class="menu-item">
+              <a href="/sistema_estefany/app/reporte/reporte.php" class="menu-link">
+                <i class="menu-icon fa fa-file fa-lg"></i>
+                
+                <div>Reportes</div>
               </a>
             
             </li>

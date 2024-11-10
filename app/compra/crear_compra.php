@@ -6,6 +6,7 @@ if (!defined("ROOT")) {
 include ROOT . "/models/modeloCompra.php";
 include ROOT . "/models/modeloProducto.php";
 include ROOT . "/models/modeloProveedor.php";
+include ROOT . "/models/modeloInventario.php";
 include ROOT . "/config/clase.php";
 class CrearCompra extends BaseClase
 {
@@ -41,6 +42,12 @@ class CrearCompra extends BaseClase
   
         ];
         $modelo->create($datos);
+        $modeloInventario = new ModeloInventario();
+        $producto_inventario = $modeloInventario->getDetail("producto_id",$producto);
+        $producto_inventario_id = $producto_inventario["id"];
+        $producto_inventario["cantidad_disponible"] += (int)$cantidad;
+        $modeloInventario->actualizarCliente($producto_inventario_id,$producto_inventario,"id");
+
         return ["tipo" => "success", "mensaje" => "Se ha registrado con exito!"];
 
       }

@@ -40,7 +40,7 @@
         }
 
         # Genera un sql de registro
-        private function create_insert_sql($array_data) {
+        protected function create_insert_sql($array_data) {
             try {
                 # Valida que se ha proporcionado un nombre de tabla, de no encontrarla dispara un error
                 if ($this->table == '') { throw new Exception('Tabla no asignada'); }

@@ -11,13 +11,18 @@
   
   <!-- Main JS -->
   <script src="/sistema_estefany/public/lib/sneat/assets/js/main.js"></script>
-  <script src="/sistema_estefany/public/js/alerta.js"></script>
   
   <!-- Page JS -->
   
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="/sistema_estefany/public/lib/sweet_alert2/js/sweetalert2.all.min.js"></script>
+  <script src="/sistema_estefany/public/lib/daterangepicker/moment.min.js"></script>
+  <script src="/sistema_estefany/public/lib/daterangepicker/daterangepicker.js"></script>
+  <script src="/sistema_estefany/public/lib/select2/dist/js/select2.min.js"></script>
+  <script src="/sistema_estefany/public/js/alerta.js"></script>
+  
+
   
   </body>
 
