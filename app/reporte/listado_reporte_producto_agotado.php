@@ -19,7 +19,10 @@ class ReporteProductoListado extends BaseClase
 
         $page = $_GET["page"] ?? "";
         // Obtener el filtro
-        $filtro = $_GET["filtro"] ?? ""; // Uso del operador null coalescing
+        $filtro = $_GET["filtro"] ?? 1000000; // Uso del operador null coalescing
+        $filtro = (int)$filtro; // Uso del operador null coalescing
+        echo $filtro;
+
 
         // Contar total de registros
 
@@ -44,7 +47,7 @@ class ReporteProductoListado extends BaseClase
         LEFT JOIN 
             inventario i ON p.id = i.producto_id
         WHERE 
-            i.cantidad_disponible <= 5 
+            i.cantidad_disponible <= $filtro 
         LIMIT 
             :limit OFFSET :offset";
         // Obtener los registros de la página actual

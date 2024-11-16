@@ -67,10 +67,15 @@
                                
                                 <div class="col-md-7 mb-3">
                                     <label class="mb-2" for="">Por Cantidad de agotamiento</label>
-                                    <div class="input-group input-group-merge" bis_skin_checked="1">
-                                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
-                                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                    <div class="input-group input-group-merge" bis_skin_checked="1" >
+                                        <input type="text" class="form-control" placeholder="Search..." id="buscarProductoAgotado" aria-label="Search..." aria-describedby="basic-addon-search31">
+                                        
                                     </div>
+
+                                </div>
+                                <div class="col-md-3  mt-4 mb-3">
+                                    <div class="mb-2"></div>
+                                    <button class="btn btn-primary btn-sm" onclick="filtrarProductosAgotado()"> <i class="bx bx-search"></i></button>
 
                                 </div>
                                 <div class="col-md-12 mb-3">

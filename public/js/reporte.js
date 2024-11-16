@@ -28,6 +28,18 @@ function listar_producto_agotado() {
             
         })
     }
+    function filtrarProductosAgotado(e){
+        let filtro = $("#buscarProductoAgotado").val();
+        console.log(filtro);
+        $.get("/sistema_estefany/app/reporte/listado_reporte_producto_agotado.php",{filtro}).done(function(e) {
+             
+                 $("#data-table-producto").html(e)
+    
+             
+             
+         })
+
+    }
     function cargarPaginaVenta(page,url) {
        //let url = $("#url-paginacion").data("url");
        console.log(url);
