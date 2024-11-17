@@ -46,8 +46,8 @@
                                             <label for="formFile" class="form-label">Selecciona el respaldo</label>
                                             
                                         </div>
-                                        <input class="form-control mb-3" type="file" id="formFile">
-                                        <button class="btn btn-primary w-50">Restaurar</button>
+                                        <input class="form-control mb-3" type="file" id="fileInput">
+                                        <button class="btn btn-primary w-50" disabled="true" id="btn_restaurar">Restaurar</button>
 
                                         
                                     </div>
@@ -79,12 +79,14 @@
 <script src="/sistema_estefany/public/js/reporte.js"></script>
 <script>
     document.getElementById('fileInput').addEventListener('change', function(event) {
+        const btn = document.getElementById("btn_restaurar");
         const file = event.target.files[0];
         const archivo_sql = document.getElementById("archivo_sql"); // Obtiene el archivo seleccionado
         if (file) {
-            const fileName = file.name; // Obtiene el nombre del archivo
-            archivo_sql.style.display = "block"
-            document.getElementById('fileName').textContent = `${fileName}`;
+
+            btn.disabled = false;
+            console.log(btn)
+            
         } else {
             archivo_sql.style.display = "none"
 
