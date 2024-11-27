@@ -23,34 +23,7 @@ function cargarPaginaProducto(page, url) {
     console.log(url);
     $.get(url, { page, filtro }).done(function (e) {
 
-<<<<<<< HEAD
         $("#data-table-producto").html(e)
-=======
-            
-            
-        })
-    }
-    function filtrarProductosAgotado(e){
-        let filtro = $("#buscarProductoAgotado").val();
-        console.log(filtro);
-        $.get("/sistema_estefany/app/reporte/listado_reporte_producto_agotado.php",{filtro}).done(function(e) {
-             
-                 $("#data-table-producto").html(e)
-    
-             
-             
-         })
-
-    }
-    function cargarPaginaVenta(page,url) {
-       //let url = $("#url-paginacion").data("url");
-       console.log(url);
-       $.get(url,{page}).done(function(e) {
-            
-            
-         
-                $("#data-table-venta").html(e)
->>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
 
 
     })

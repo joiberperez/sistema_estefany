@@ -21,7 +21,6 @@ class ReporteProductoListado extends BaseClase
 
         $page = $_GET["page"] ?? "";
         // Obtener el filtro
-<<<<<<< HEAD
         $sql = "
         SELECT 
             count(*) as total_registro
@@ -36,11 +35,6 @@ class ReporteProductoListado extends BaseClase
             
 
         
-=======
-        $filtro = $_GET["filtro"] ?? 1000000; // Uso del operador null coalescing
-        $filtro = (int)$filtro; // Uso del operador null coalescing
-        echo $filtro;
->>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
 
 
         // Contar total de registros
