@@ -43,7 +43,7 @@ class PDF extends \FPDF {
             $this->Cell($w[1], 10, $row['fecha_venta'], 1, 0, 'C');
             $this->Cell($w[2], 10, "$" . $row['total'], 1, 0, 'C');
             $this->Cell($w[3], 10, "V-".$row['cliente_cedula'], 1, 0, 'C');
-            $this->Cell($w[4], 10, $row['metodo_pago_id'], 1, 0, 'C');
+            $this->Cell($w[4], 10, $row['nombre_metodo_pago'], 1, 0, 'C');
             $this->Ln();
         }
     }
@@ -69,8 +69,10 @@ $fechaFin  = new DateTime($fechaFin);
 $fechaFin = $fechaFin->format('y-m-d');
 
 $modelo = new ModeloVenta();
-$data = $modelo->conn->query("SELECT v.*,c.cedula_cliente AS cliente_cedula FROM venta v
+$data = $modelo->conn->query("SELECT v.*,c.cedula_cliente AS cliente_cedula, mp.nombre as nombre_metodo_pago FROM venta v
 LEFT JOIN cliente c ON v.cliente_id = c.id_cliente
+LEFT JOIN metodo_pago mp ON v.metodo_pago_id = mp.id
+
 WHERE fecha_venta BETWEEN '$fechaInicio' AND '$fechaFin'");
 $data = $data->fetchAll(PDO::FETCH_ASSOC);
 

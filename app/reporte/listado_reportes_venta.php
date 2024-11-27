@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 <td><?= $venta["id"]; ?></td>
                 <td><?= $venta["cliente_cedula"]; ?></td>
                 <td>$<?= $venta["total"]; ?></td>
-                <td><?= $venta["metodo_pago_id"]; ?></td>
+                <td><?= $venta["metodo_pago_nombre"]; ?></td>
                 
 
 

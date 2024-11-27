@@ -1,8 +1,10 @@
 <?php
+session_start();
 
 if (!defined("ROOT")) {
   include "../config/config.php";
 }
+include ROOT . "/models/modeloLogs.php";
 include ROOT . "/models/modeloProveedor.php";
 include ROOT . "/config/clase.php";
 class CrearProveedor extends BaseClase
@@ -37,6 +39,8 @@ class CrearProveedor extends BaseClase
           ];
         
         $modelo->create($datos);
+        $log = new ModeloLogs();
+        $log->logUserAccion($_SESSION["user"]["id"], 'registro_proveedor', 'El usuario ha registrado un proveedor.');
         return ["tipo" => "success", "mensaje" => "Se ha registrado con exito!"];
 
       }

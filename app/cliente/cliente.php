@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (empty($_SESSION["user"])) {
+    header("Location: /sistema_estefany/");
+  }
+
+?>
 <?php include "../config/config.php"  ?>
 
 
@@ -70,7 +77,15 @@
                     <div class="row">
                         <div class="col-lg-7 col-sm-12">
                             <div class="card mt-5">
-                                <h5 class="card-header">Listado de Clientes</h5>
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-header">Listado de Clientes</h5>
+                                    <div class="w-25 m-3">
+                                        <input type="text" class="form-control" id="busqueda-tabla" onkeyup="filtrarTabla()">
+
+                                    </div>
+
+                                </div>
+
                                 <div class="table-responsive text-nowrap" id="data-table">
 
 
@@ -114,5 +129,13 @@
     })
 
 })
+function filtrarTabla(){
+            let filtro = $("#busqueda-tabla").val();
+            
+            $.get("/sistema_estefany/app/cliente/listar_cliente.php",{ filtro }).done(function(data){
+                console.log("hola")
+                $("#data-table").html(data);
+            })
+        }
 </script>
 <script src="/sistema_estefany/public/js/cliente.js"></script>

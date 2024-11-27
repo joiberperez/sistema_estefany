@@ -67,10 +67,19 @@ function cargar_producto(id_producto) {
         $("#buscarProducto").val("");
     })
 }
-function calcular_precio_producto(precio) {
+function calcular_precio_producto(precio,cant) {
     let cantidad = $("#cantidad").val();
     cantidad = cantidad.replace(",", ".")
-    $("#precio_total").val((parseFloat(cantidad) * parseFloat(precio)).toFixed(2))
+    if (cantidad <= parseFloat(cant)) {
+        $("#precio_total_producto").val((parseInt(cantidad) * parseFloat(precio)).toFixed(2))
+        
+
+    } else {
+
+        alerta("danger", "la cantidad seleccionada no puede sobrepasar a la registrada");
+
+    }
+    
 
 }
 function increment(cantidad, precio) {

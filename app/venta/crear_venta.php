@@ -4,7 +4,10 @@ if (!defined("ROOT")) {
 }
 ?>
 <?php
+session_start();
+include ROOT . "/models/modeloLogs.php";
 include ROOT . "/models/modeloVenta.php";
+include ROOT . "/models/modeloDolar.php";
 include ROOT . "/models/modeloInventario.php";
 
 include ROOT . "/config/clase.php";
@@ -25,18 +28,21 @@ class NuevaVenta
     function generar_venta()
     {
         try {
-
-
+            
+            $dolar = new ModeloDolar();
             $venta_productos = json_decode($_POST["venta_productos"]);
             $modelo = new ModeloVenta();
             $total = $this->calcular_total();
+            $total_BS = new modeloDolar();
+            $total_BS = $total_BS->getDetail("id","1");
+            $total_BS = $total * (float)$total_BS["valor"];
             $cliente_id = $_POST["cliente_id"];
             $forma_pago = $_POST["forma_pago"];
             
             $venta = [
                 "cliente_id" => (int)$cliente_id,
                 "metodo_pago_id" => (int)$forma_pago,
-                
+                "total_bs"=>$total_BS,
                 "total" => $total
             ];
             $id_venta = $modelo->create($venta);
@@ -57,6 +63,8 @@ class NuevaVenta
                 $producto_inventario["cantidad_disponible"] = $producto_inventario["cantidad_disponible"] - (float)$venta_producto->cantidad;
                 $modelo_inventario->actualizarCliente($id,$producto_inventario,"producto_id"); 
             }
+            $log = new ModeloLogs();
+            $log->logUserAccion($_SESSION["user"]["id"], 'registro_venta', 'El usuario ha realizado una venta.');
             echo json_encode(["tipo"=>"success","mensaje"=>"Se ha registrado la venta con exito!"]);
         } catch (Exception $e) {
             echo $e;

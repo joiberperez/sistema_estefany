@@ -1,8 +1,11 @@
 <?php
+session_start();
 if(!defined("ROOT")){
     include "../config/config.php";
 
 }
+include ROOT . "/models/modeloLogs.php";
+
 include ROOT . "/models/modeloProveedor.php";
 include ROOT . "/config/clase.php";
 class ActualizarProveedor extends BaseClase{
@@ -40,6 +43,8 @@ class ActualizarProveedor extends BaseClase{
                 
             ];
             $modelo->actualizarCliente($id,$datos,"id");
+            $log = new ModeloLogs();
+            $log->logUserAccion($_SESSION["user"]["id"], 'actualizar_cliente', 'El usuario ha actualizado un proveedor.');
             echo json_encode(["tipo"=>"success", "mensaje"=>"¡Se ha actualizado con exito!"]);
             
         }catch(Exception $error){

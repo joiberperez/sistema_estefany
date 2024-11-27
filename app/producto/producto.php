@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (empty($_SESSION["user"])) {
+    header("Location: /sistema_estefany/");
+  }
+
+?>
 <?php include "../config/config.php"  ?>
 
 

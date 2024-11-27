@@ -61,12 +61,14 @@ class ModeloVenta extends Model
         $sql = "
         SELECT 
             venta.*, 
-            cliente.cedula_cliente AS cliente_cedula
+            cliente.cedula_cliente AS cliente_cedula, mp.nombre as metodo_pago_nombre
             
         FROM 
             venta 
         LEFT JOIN 
             cliente ON venta.cliente_id = cliente.id_cliente
+        LEFT JOIN 
+            metodo_pago mp ON venta.metodo_pago_id = mp.id
         
         WHERE 
             venta.$campo LIKE :filtro
@@ -113,6 +115,8 @@ function get_count($campo=null,$filtro=null)
             venta v
         LEFT JOIN 
             cliente c ON v.cliente_id = c.id_cliente
+        LEFT JOIN 
+            metodo_pago mp ON v.metodo_pago_id = mp.id
         WHERE 
             v.$campo LIKE '%$filtro%'";
 

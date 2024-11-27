@@ -16,14 +16,32 @@ class ReporteProductoListado extends BaseClase
     {
         $modelo = new ModeloProducto();
 
+        $filtro = $_GET["filtro"] ?? 1000000; // Uso del operador null coalescing
+        $filtro = (int)$filtro; // Uso del operador null coalescing
 
         $page = $_GET["page"] ?? "";
         // Obtener el filtro
-        $filtro = $_GET["filtro"] ?? ""; // Uso del operador null coalescing
+        $sql = "
+        SELECT 
+            count(*) as total_registro
+        FROM 
+            producto p
+        LEFT JOIN 
+            categoria c ON p.categoria_id = c.id
+        LEFT JOIN 
+            inventario i ON p.id = i.producto_id
+        WHERE 
+            i.cantidad_disponible <= $filtro";
+            
+
+        
+
 
         // Contar total de registros
 
-        $totalRegistros = $modelo->get_count(campo: 'id', filtro: $filtro);
+        $totalRegistros = $modelo->conn->query($sql);
+        $totalRegistros = $totalRegistros->fetchColumn();
+        
         $registrosPorPagina = 5;
         $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 
@@ -44,7 +62,7 @@ class ReporteProductoListado extends BaseClase
         LEFT JOIN 
             inventario i ON p.id = i.producto_id
         WHERE 
-            i.cantidad_disponible <= 5 
+            i.cantidad_disponible <= $filtro 
         LIMIT 
             :limit OFFSET :offset";
         // Obtener los registros de la página actual
@@ -165,6 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 <a class='page-link' href="javascript:void(0);" onclick='cargarPaginaProducto(<?= ($paginaActual + 1) ?>,"/sistema_estefany/app/reporte/listado_reporte_producto_agotado.php")' aria-label="Next">
                     <i class="tf-icon bx bx-chevrons-right"></i>
                 </a>
+                
             </li>
         <?php } ?>
     </ul>

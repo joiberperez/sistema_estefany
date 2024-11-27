@@ -105,6 +105,7 @@
                 exit(); # Mata la ejecucion del codigo
             }
         }
+        
         function actualizar_sql($condicion, $datos,$campo){
             try {
                 # Valida que se ha proporcionado un nombre de tabla, de no encontrarla dispara un error

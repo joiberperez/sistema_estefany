@@ -1,11 +1,12 @@
 <?php
-
+session_start();
 if (!defined("ROOT")) {
   include "../config/config.php";
 }
 include ROOT . "/models/modeloProducto.php";
 include ROOT . "/models/modeloInventario.php";
 include ROOT . "/config/clase.php";
+include ROOT . "/models/modeloLogs.php";
 class CrearProducto extends BaseClase
 {
 
@@ -38,6 +39,8 @@ class CrearProducto extends BaseClase
           "cantidad_disponible" => 0
         ];
         $modeloInventario->create($datosInventario);
+        $log = new ModeloLogs();
+        $log->logUserAccion($_SESSION["user"]["id"], 'registro_producto', 'El usuario ha registrado un producto.');
         return ["tipo" => "success", "mensaje" => "Se ha registrado con exito!"];
 
       }

@@ -84,9 +84,6 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
                 <td><?= $compra["nombre_proveedor"]; ?></td>
                 <td><?= $compra["cantidad"]; ?></td>
                 <td>
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger" onclick="eliminar_compra(<?= $compra['id'] ?>)"> 
-                        <span class="tf-icons bx bx-trash"></span>
-                    </button>
                     <button type="button" class="btn rounded-pill btn-icon btn-outline-primary" onclick="detalle_compra(<?= $compra['id'] ?>)">
 
                         <span class="tf-icons bx bx-pencil"></span>

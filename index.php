@@ -1,7 +1,9 @@
 <?php
 //se inicia la session
 session_start();
-
+if(isset($_SESSION["usuario"])){
+  header("Location: /sistema_estefany/app/home.php");
+}
 ?>
 <!DOCTYPE html>
 
@@ -64,10 +66,13 @@ session_start();
                 <input type="password" placeholder="Dijite su contraseña" name="password" required>
               </div>
 
-              <div class="text"><a href="#">Olvido su contraseña?</a></div>
+              <div class="text"><a href="/sistema_estefany/app/usuario/obtener_usuario_password.php">Olvido su contraseña?</a></div>
               <div class="button input-box">
                 <input type="submit" value="Ingresar">
               </div>
+
+              <div class="text">No tienes cuenta? <a href="/sistema_estefany/app/usuario/crear_usuario.php">crea una</a></div>
+              
               <div class="text sign-up-text"></div>
               <div class="text sign-up-text"></div>
             </div>

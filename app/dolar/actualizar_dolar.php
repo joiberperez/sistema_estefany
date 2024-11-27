@@ -6,12 +6,14 @@ if (!defined("ROOT")) {
     include "../config/config.php";
 }
 include ROOT . "/models/modeloDolar.php";
-
+session_start();
+include ROOT . "/models/modeloLogs.php";
+ 
 class Dolar
 {
     function peticion_dolar()
     {
-        $url = 'https://www3.animeflv.net/';
+        $url = 'https://www.bcv.org.ve/';
 
         // Inicializa cURL
         $ch = curl_init();
@@ -64,6 +66,8 @@ class Dolar
             $dolar_value = (float)($dolar);
             $modelo = new ModeloDolar();
             $modelo->actualizar_dolar($dolar_value);
+            $log = new ModeloLogs();
+            $log->logUserAccion($_SESSION["user"]["id"], 'actualizar_dolar', 'El usuario ha actualizado el valor del dolar.');
             echo  $dolar_value;
         }
     }

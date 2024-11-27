@@ -14,7 +14,7 @@ class ProductoListado extends BaseClase
 
     public function listar_productos()
     {
-        $modelo = new ModeloProducto();
+        $modelo = new ModeloVenta();
 
         
         $page = $_GET["page"] ?? "";
@@ -69,7 +69,8 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
         
         <th>#</th>
         <th>Cliente</th>
-        <th>Estado</th>
+        
+        <th>Metodo Pago</th>
         <th>Total</th>
     </thead>
     <tbody class="table-border-bottom-0">
@@ -79,27 +80,17 @@ if($_SERVER["REQUEST_METHOD"]==="GET"){
 
             
                 <td><?= $producto["id"]; ?></td>
-                <td>$<?= $producto["cliente_cedula"]; ?></td>
+                <td><?= $producto["cliente_cedula"]; ?></td>
 
-                <td><?= $producto["metodo_pago"]; ?></td>
-                <td>
-                    <?php if($producto["estado"] === "realizado" ):?>
-                        <span class="badge  bg-label-success"><?= $producto["estado"]; ?></span>
-                    <?php else: ?>
-                        <span class="badge  bg-label-danger"><?= $producto["estado"]; ?></span>
-                    
-                    <?php endif; ?>
-                    
-                </td>
+                <td><?= $producto["metodo_pago_nombre"]; ?></td>
+                <td>$<?= $producto["total"]; ?></td>
+                
                 
                 <td>
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger" onclick="eliminar_producto(<?= $producto['id'] ?>)"> 
-                        <span class="tf-icons bx bx-trash"></span>
-                    </button>
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-primary" onclick="actualizarProducto(<?= $producto['id'] ?>)">
+                    <a type="button" href="/sistema_estefany/app/venta/pdf_venta.php?venta_id=<?=  $producto["id"]; ?>" class="btn rounded-pill btn-icon btn-outline-primary">
 
-                        <span class="tf-icons bx bx-pencil"></span>
-                    </button>
+                    <i class="fa-regular fa-file-pdf"></i>
+        </a>
                 </td>
 
             </tr>

@@ -4,6 +4,7 @@ if (!defined("ROOT")) {
     include "./app/config/config.php";
   }
    require './app/models/modeloLogin.php';
+   require './app/models/modeloLogs.php';
    
 
 
@@ -34,7 +35,10 @@ if (!defined("ROOT")) {
 
                         }
                         //se crean las variables para los datos del usuario
-                        $_SESSION['usuario'] = $datosUsuario['usuario'];
+                        $log = new ModeloLogs();
+                        $log->logUserAccion($datosUsuario["id"], 'login', 'El usuario inició sesión.');
+                        $_SESSION['user'] = $datosUsuario;
+                       
 
                         //redirige al home
                         header('Location: ./app/home.php');

@@ -127,7 +127,15 @@
             
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link">
+              <a href="/sistema_estefany/app/respaldo/respaldo.php" class="menu-link">
+                <i class="menu-icon fa fa-database fa-lg"></i>
+                
+                <div>Respaldo</div>
+              </a>
+            
+            </li>
+            <li class="menu-item">
+              <a href="/sistema_estefany/app/usuario/usuario.php" class="menu-link">
                 <i class="menu-icon fa fa-users fa-lg"></i>
                 
                 <div>Usuario</div>
@@ -136,7 +144,7 @@
             </li>
             
               <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link">
+                <a href="/sistema_estefany/app/configuracion/configuracion.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-cog"></i>
                   
                   <div>Configuracion</div>
@@ -146,7 +154,7 @@
               <div class="mt-auto">
 
                 <p class="ms-4 mb-1">Bienvenid@</p>
-                <p class="ms-4"><strong>Joiber Perez</strong></p>
+                <p class="ms-4"><strong><?= $_SESSION["user"]["nombre_usuario"] ?></strong></p>
               </div>
               
 

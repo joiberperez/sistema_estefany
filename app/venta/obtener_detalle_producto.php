@@ -87,7 +87,7 @@ $producto = $ActualizarProducto->listar_cliente();
             <label for="">Cantidad</label>
             <div class="input-group mb-3">
                 <button class="btn btn-outline-primary" onclick="decrement('<?= $producto['precio'] ?>')" type="button" id="button-addon1">-</button>
-                <input type="text" class="form-control" id="cantidad" onkeyup="calcular_precio_producto('<?= $producto['precio'] ?>');" value="1" placeholder="" aria-label="Texto de ejemplo con complemento de botón" aria-describedby="button-addon1">
+                <input type="text" class="form-control" id="cantidad" onkeyup="calcular_precio_producto('<?= $producto['cantidad'] ?>','<?= $producto['precio'] ?>');" value="1" placeholder="" aria-label="Texto de ejemplo con complemento de botón" aria-describedby="button-addon1">
                 <button class="btn btn-outline-primary" onclick="increment('<?= $producto['cantidad'] ?>','<?= $producto['precio'] ?>')" type="button">+</button>
             </div>
 

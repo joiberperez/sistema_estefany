@@ -20,6 +20,7 @@
   <script src="/sistema_estefany/public/lib/daterangepicker/moment.min.js"></script>
   <script src="/sistema_estefany/public/lib/daterangepicker/daterangepicker.js"></script>
   <script src="/sistema_estefany/public/lib/select2/dist/js/select2.min.js"></script>
+  <script src="/sistema_estefany/public/lib/chartjs/chart.umd.js"></script>
   <script src="/sistema_estefany/public/js/alerta.js"></script>
   
 

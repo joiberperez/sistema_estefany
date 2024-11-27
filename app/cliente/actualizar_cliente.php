@@ -1,10 +1,13 @@
 <?php
+session_start();
 if(!defined("ROOT")){
     include "../config/config.php";
 
 }
 include ROOT . "/models/modeloCliente.php";
 include ROOT . "/config/clase.php";
+include ROOT . "/models/modeloLogs.php";
+
 class ActualizarCliente extends BaseClase{
 
    
@@ -34,6 +37,8 @@ class ActualizarCliente extends BaseClase{
                 
             ];
             $modelo->actualizarCliente($id_cliente,$datos,"id_cliente");
+            $log = new ModeloLogs();
+            $log->logUserAccion($_SESSION["user"]["id"], 'actualizar_cliente', 'El usuario ha actualizado un cliente.');
             echo json_encode(["tipo"=>"success", "mensaje"=>"¡Se ha actualizado con exito!"]);
             
         }catch(Exception $error){

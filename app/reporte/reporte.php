@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (empty($_SESSION["user"])) {
+    header("Location: /sistema_estefany/");
+  }
+
+
+?>
 <?php include "../config/config.php"  ?>
 
 
@@ -5,6 +13,7 @@
 
 
 <?php include ROOT . "/plantillas/head.php"  ?>
+
 
 
 <!-- Content -->
@@ -67,17 +76,21 @@
                                
                                 <div class="col-md-7 mb-3">
                                     <label class="mb-2" for="">Por Cantidad de agotamiento</label>
-                                    <div class="input-group input-group-merge" bis_skin_checked="1">
-                                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
-                                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                    <div class="input-group input-group-merge" bis_skin_checked="1" >
+                                        <input type="text" class="form-control" placeholder="Search..." id="buscarProductoAgotado" onkeyup="habilitarBotonFiltrarProducto()">
                                     </div>
+
+                                </div>
+                                <div class="col-md-3 mb-3 align-self-end" >
+                                    
+                                    <button class="btn btn-primary btn-sm " id="btn-filtrar-producto"  disabled style="height:40px" onclick="filtrarProductosAgotado()"> <i class="bx bx-search"></i></button>
 
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="card rounded-0">
                                         <div class="card-body">
                                             <div class="text-end">
-                                                <button class="btn btn-sm btn-primary rounded-0 mb-2" id="btn-reporte-venta" onclick="generar_pdf_producto()" disabled>Generar <i class="fa-regular fa-file-pdf"></i></button>
+                                                <button class="btn btn-sm btn-primary rounded-0 mb-2" id="btn-reporte-producto" onclick="generar_pdf_producto()" disabled>Generar <i class="fa-regular fa-file-pdf"></i></button>
 
                                             </div>
                                             <div class="table-responsive text-nowrap" id="data-table-producto">
@@ -115,6 +128,7 @@
 <script>
     let fechaInicio;
     let fechaFin;
+    
     $(document).ready(function() {
 
         $('#fecha_rango_venta').daterangepicker({
@@ -140,9 +154,5 @@
         });
     });
 
-    function generar_pdf_venta() {
-        //$.get("/sistema_estefany/app/reporte/reporte.php",{generar_pdf:true});
-        window.open(`/sistema_estefany/app/reporte/pdf_venta.php?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, '_blank');
-
-    }
+    
 </script>

@@ -127,9 +127,6 @@ $("#form_actualizar_cliente").submit(function (e) {
 
     })
     return false;
-    /*     $.post("/sistema_estefany/app/cliente/crear_cliente.php").done(function(data) {
-      $("#modal-container").html(data);
-      $(".modal").modal("show");
-    }) */
+   
 
 })

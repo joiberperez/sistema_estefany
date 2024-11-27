@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (!defined("ROOT")) {
   include "../config/config.php";
 }
@@ -8,6 +8,7 @@ include ROOT . "/models/modeloProducto.php";
 include ROOT . "/models/modeloProveedor.php";
 include ROOT . "/models/modeloInventario.php";
 include ROOT . "/config/clase.php";
+include ROOT . "/models/modeloLogs.php";
 class CrearCompra extends BaseClase
 {
 
@@ -42,6 +43,8 @@ class CrearCompra extends BaseClase
   
         ];
         $modelo->create($datos);
+        $log = new ModeloLogs();
+        $log->logUserAccion($_SESSION["user"]["id"], 'registro_compra', 'El usuario ha registrado una compra.');
         $modeloInventario = new ModeloInventario();
         $producto_inventario = $modeloInventario->getDetail("producto_id",$producto);
         $producto_inventario_id = $producto_inventario["id"];

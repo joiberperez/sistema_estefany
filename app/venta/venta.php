@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (empty($_SESSION["user"])) {
+    header("Location: /sistema_estefany/");
+  }
+
+?>
 <?php include "../config/config.php"  ?>
 
 
@@ -33,47 +40,11 @@
                             <!-- <li class="breadcrumb-item active">Data</li> -->
                         </ol>
                     </nav>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <div class="card border-bottom  border-primary">
+                    <div class="text-end">
 
-                                <div class="card-body">
-
-                                    <h5 class="card-title">Cantidad de Ventas realizadas</h5>
-                                    <h3 class="card-text"><span class="text-success"><i class="fa-solid fa-cart-shopping"></i></span> <span id="dolar_valor">100</span></h3>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card border-bottom  border-primary">
-
-                                <div class="card-body">
-
-                                    <h5 class="card-title">Cantidad de Ventas pendiente</h5>
-                                    <h3 class="card-text"><span class="text-danger"><i class="fa-solid fa-credit-card"></i></span> <span id="dolar_valor">100</span></h3>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card border-bottom border-primary">
-
-                                <div class="card-body">
-
-                                    <h5 class="card-title">Registrar Venta</h5>
-
-                                    <a class="btn btn-primary btn-sm text-white" href="/sistema_estefany/app/venta/nueva_venta.php/"><span class="text-success"><i class="fa-solid fa-cart-plus"></i></span> Nueva venta</a>
-
-
-                                </div>
-                            </div>
-
-                        </div>
-
+                        <a class="btn btn-primary rounded-0 text-white" href="/sistema_estefany/app/venta/nueva_venta.php/"><span class="text-success"><i class="fa-solid fa-cart-plus"></i></span> Nueva venta</a>
                     </div>
+                    
                     <div class="card mt-4">
                         <div class="card-header">
                             <div class="row">
