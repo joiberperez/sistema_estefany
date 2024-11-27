@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 if (empty($_SESSION["user"])) {
@@ -9,13 +10,21 @@ if (empty($_SESSION["user"])) {
 <?php include "../config/config.php"  ?>
 
 
+=======
+<?php include "../config/config.php"  ?>
+
+
+>>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
 
 
 
 <?php include ROOT . "/plantillas/head.php"  ?>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
 <!-- Content -->
 
 <div class="layout-wrapper layout-content-navbar">
@@ -34,6 +43,7 @@ if (empty($_SESSION["user"])) {
                     <div class="row ">
                         <div class="col-md-6">
                             <h5 class="text-start text-primary mb-3">Repaldar</h5>
+<<<<<<< HEAD
                             <p>Puedes respaldar los datos</p>
 
                             <div class="card">
@@ -50,6 +60,13 @@ if (empty($_SESSION["user"])) {
                                         <a class="btn btn-primary w-50" href="/sistema_estefany/app/respaldo/respaldo_crear.php" id="btn_respaldar">Respaldar</a>
 
                                     </div>
+=======
+
+                            <div class="card rounded-0">
+                                <div class="card-body">
+
+                                    <button class="btn btn-primary">Respaldar</button>
+>>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
 
                                 </div>
                             </div>
@@ -58,6 +75,7 @@ if (empty($_SESSION["user"])) {
                         <div class="col-md-6">
                             <h5 class="text-start text-primary mb-3">Restaurar</h5>
 
+<<<<<<< HEAD
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center" id="archivo_sql">
@@ -74,6 +92,20 @@ if (empty($_SESSION["user"])) {
                                         </form>
 
 
+=======
+                            <div class="card rounded-0">
+                                <div class="card-body">
+                                    <div class="text-center" id="archivo_sql">
+                                        <img src="/sistema_estefany/public/image/sql.png" width="150" alt="">
+                                        <div class="">
+                                            <label for="formFile" class="form-label">Selecciona el respaldo</label>
+                                            
+                                        </div>
+                                        <input class="form-control mb-3" type="file" id="fileInput">
+                                        <button class="btn btn-primary w-50" disabled="true" id="btn_restaurar">Restaurar</button>
+
+                                        
+>>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
                                     </div>
                                 </div>
                             </div>
@@ -110,12 +142,17 @@ if (empty($_SESSION["user"])) {
 
             btn.disabled = false;
             console.log(btn)
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
         } else {
             archivo_sql.style.display = "none"
 
         }
     });
+<<<<<<< HEAD
     $("#form_restaurar").submit(function(e) {
         e.preventDefault();
         Swal.fire({
@@ -160,4 +197,6 @@ if (empty($_SESSION["user"])) {
     function confirmarRespaldar(e) {
 
     }
+=======
+>>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
 </script>

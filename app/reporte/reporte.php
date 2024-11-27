@@ -77,6 +77,7 @@ if (empty($_SESSION["user"])) {
                                 <div class="col-md-7 mb-3">
                                     <label class="mb-2" for="">Por Cantidad de agotamiento</label>
                                     <div class="input-group input-group-merge" bis_skin_checked="1" >
+<<<<<<< HEAD
                                         <input type="text" class="form-control" placeholder="Search..." id="buscarProductoAgotado" onkeyup="habilitarBotonFiltrarProducto()">
                                     </div>
 
@@ -84,6 +85,16 @@ if (empty($_SESSION["user"])) {
                                 <div class="col-md-3 mb-3 align-self-end" >
                                     
                                     <button class="btn btn-primary btn-sm " id="btn-filtrar-producto"  disabled style="height:40px" onclick="filtrarProductosAgotado()"> <i class="bx bx-search"></i></button>
+=======
+                                        <input type="text" class="form-control" placeholder="Search..." id="buscarProductoAgotado" aria-label="Search..." aria-describedby="basic-addon-search31">
+                                        
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3  mt-4 mb-3">
+                                    <div class="mb-2"></div>
+                                    <button class="btn btn-primary btn-sm" onclick="filtrarProductosAgotado()"> <i class="bx bx-search"></i></button>
+>>>>>>> 29f57180addefe73214cb55d0e0e083ac91abc7f
 
                                 </div>
                                 <div class="col-md-12 mb-3">
